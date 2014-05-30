@@ -1,9 +1,28 @@
+import org.junit.After;
+import org.junit.Before;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Hashtable;
+import java.util.Map;
+import java.util.Properties;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+
 public abstract class TestCase {
 
     public static final java.lang.String DEFAULT_DIRECTORY = "profile.default_directory";
     public static final java.lang.String DOWNLOADS_FOLDER = "download.default_directory";
+    private static final String REMOTE_URL = null;
     protected WebDriver driver;
-    protected Host host;
     private Properties p;
 
     @Before
@@ -69,14 +88,6 @@ public abstract class TestCase {
         return this.driver;
     }
 
-    public void setHost(Host host) {
-        this.host = host;
-    }
-
-    public Host getHost() {
-        return this.host;
-    }
-
     public Properties getP() {
         return p;
     }
@@ -123,10 +134,8 @@ public abstract class TestCase {
     protected File getDownloadsFolder() {
         String dir = this.getP().getProperty(TestCase.DOWNLOADS_FOLDER);
         File dirWrapper = new File(dir);
-        assertThat("destination folder exists", dirWrapper.exists(),
-is(true));
-        assertThat("destination is folder", dirWrapper.isDirectory(),
-is(true));
+        assertThat("destination folder exists", dirWrapper.exists(), is(true));
+        assertThat("destination is folder", dirWrapper.isDirectory(), is(true));
         return dirWrapper;
     }
 }
