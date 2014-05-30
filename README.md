@@ -1,4 +1,4 @@
-examples
-========
+webdriver_chromium_silent_download
+==================================
 
-examples with code to solve different problems
+Illustrate how to perform silent download of a file using chromedriver
