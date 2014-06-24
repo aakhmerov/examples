@@ -1,6 +1,6 @@
 examples
 ========
-
+taken from: http://burtonini.com/computing/mini-dinstall
 execute following commands to setup file:
 
 	sudo cp ./mini-dinstall /etc/init.d
